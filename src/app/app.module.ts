@@ -84,6 +84,7 @@ import { ListofCustomersComponent } from './Reports/listof-customers/listof-cust
 import { BudgettingComponent } from './Components/budgetting/budgetting.component';
 import { BudgetReportComponent } from './Reports/budget-report/budget-report.component';
 import { DailyTransactionRptComponent } from './Reports/daily-transaction-rpt/daily-transaction-rpt.component';
+import { BillReportMnthPartyWiseComponent } from './Reports/bill-report-mnth-party-wise/bill-report-mnth-party-wise.component';
 
 
 
@@ -170,6 +171,7 @@ import { DailyTransactionRptComponent } from './Reports/daily-transaction-rpt/da
     BudgettingComponent,
     BudgetReportComponent,
     DailyTransactionRptComponent,
+    BillReportMnthPartyWiseComponent,
     
 
 

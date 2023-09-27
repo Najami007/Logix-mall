@@ -221,7 +221,7 @@ export class ShopBillComponent implements OnInit{
     
     this.http.get(environment.mallApiUrl+'getsinglebill?billno='+billNo).subscribe(
       (Response:any)=>{
-        console.log(Response);
+      
         this.previousBalance = Response[0].balance;
         this.billData = Response;
         if(Response.length > 0){

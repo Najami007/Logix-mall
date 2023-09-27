@@ -88,7 +88,6 @@ getRpt(){
     this.http.get(environment.mallApiUrl+'GetBillRptShopwise?startdate='+this.startDate.toISOString().substring(0,10)+'&enddate='+
     this.EndDate.toISOString().substring(0,10)+'&shopid='+this.shopID).subscribe(
       (Response)=>{
-        console.log(Response);
         this.reportData = Response;
         this.app.stopLoaderDark();
       },

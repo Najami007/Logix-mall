@@ -110,7 +110,6 @@ export class BillrptshopandpartywiseComponent implements OnInit{
       this.http.get(environment.mallApiUrl+'GetBillRptShopAndPartywise??startdate='+this.global.dateFormater(this.fromDate,'-')+
       '&enddate='+this.global.dateFormater(this.toDate,'-')+'&shopid='+this.shopID+'&partyid='+this.partyID).subscribe(
         (Response)=>{
-          console.log(Response);
           this.ReportData = Response;
         },
         (Error)=>{

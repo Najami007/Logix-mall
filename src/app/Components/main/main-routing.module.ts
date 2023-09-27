@@ -34,6 +34,7 @@ import { ListofCustomersComponent } from 'src/app/Reports/listof-customers/listo
 import { BudgettingComponent } from '../budgetting/budgetting.component';
 import { BudgetReportComponent } from 'src/app/Reports/budget-report/budget-report.component';
 import { DailyTransactionRptComponent } from 'src/app/Reports/daily-transaction-rpt/daily-transaction-rpt.component';
+import { BillReportMnthPartyWiseComponent } from 'src/app/Reports/bill-report-mnth-party-wise/bill-report-mnth-party-wise.component';
 
 
 
@@ -71,6 +72,7 @@ const routes: Routes = [
   {path:'bdgtng',component:BudgettingComponent},
   {path:'bdgtrpt',component:BudgetReportComponent},
   {path:'Dtranrpt',component:DailyTransactionRptComponent},
+  {path:'brptmp',component:BillReportMnthPartyWiseComponent},
   {path:'', redirectTo:'/main/dashBoard',pathMatch:'full'}
   ]},
 ];

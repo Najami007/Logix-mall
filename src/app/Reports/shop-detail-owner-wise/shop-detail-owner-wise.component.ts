@@ -67,7 +67,7 @@ export class ShopDetailOwnerWiseComponent implements OnInit {
     this.app.startLoaderDark();
     this.http.get(environment.mallApiUrl+'GetOwnerShopsDetail?ownerID='+this.partyID).subscribe(
       (Response)=>{
-        console.log(Response);
+      
 
         this.reportData = Response;
         this.app.stopLoaderDark();

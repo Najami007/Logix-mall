@@ -2,10 +2,19 @@
 
 <div class="">
 
-    <div class=" container d-flex bg-white p-2 border-bottom">
+    <div class=" container-fluid  justify-content-between d-flex bg-white p-2 border-bottom">
 
+        <mat-form-field class="w-50 me-3" appearance="outline">
+           <mat-label>Select Customer</mat-label>
+           <mat-select [(ngModel)]="customerID">
+            <mat-option><ngx-mat-select-search [(ngModel)]="customerSearch"
+                [placeholderLabel]="'Search...'" [noEntriesFoundLabel]="'Not found'"
+                name="search"></ngx-mat-select-search></mat-option>
+            <mat-option *ngFor="let item of customerList | filter:customerSearch" [value]="item.partyID">{{item.partyName}}</mat-option>
+           </mat-select>
+        </mat-form-field>
 
-        <mat-form-field class="w-50" appearance="outline">
+        <mat-form-field class="w-25" appearance="outline">
             <mat-label>To Date</mat-label>
             <input matInput type="text" readonly="true" [(ngModel)]="toDate" [matDatepicker]="eDate">
             <mat-datepicker-toggle matSuffix [for]="eDate"></mat-datepicker-toggle>
@@ -13,13 +22,13 @@
         </mat-form-field>
 
 
-        <div class="w-50  text-center">
-            <button class="fw-bold btn btn-success border-0 justify-content-bottom   " (click)="getReport()">
+        <div class="w-25  text-center">
+            <button class="fw-bold btn btn-success me-1 border-0 justify-content-bottom   " (click)="getReport()">
                 <mat-icon>insert_drive_file</mat-icon>Get Report
             </button>
 
         
-            <button class="fw-bold btn  btn-primary border-0 ms-5 justify-content-bottom" (click)="PrintTable()">
+            <button class="fw-bold btn  btn-primary border-0  justify-content-bottom" (click)="PrintTable()">
                 <mat-icon>print</mat-icon>Print
             </button>
         </div>
@@ -42,9 +51,9 @@
                 <h1>Mehria Mall & Residencia</h1>
                 <h5 style="margin-top: -15px;" class="text-end">Mehria Town Pvt.(Ltd)</h5>
 
-                <h1>Bill Report (MonthWise)</h1>
+                <h1>Bill Report ( {{customerName}} )</h1>
                 
-                <h4 style="margin-top:-5px">{{toDate |date:'MM - yyyy' }}</h4>
+                <h4 style="margin-top:-5px">{{toDate | date:'MM - yyyy' }}</h4>
               
             </span>
             <span>
@@ -63,16 +72,16 @@
             <thead>
                 <th>S#</th>
                 <th>Bill No</th>
-                <th class="width:100px">Date</th>
+                <th style="width: 200px;">Date</th>
                 <th>Shop Title</th>
                 <th>Party Name</th>
                 <th class="text-end">Rent</th>
                 <th class="text-end">CAM</th>
                 <th class="text-end">HVAC</th>
                 <th class="text-end">Wapda</th>
-                <th class="text-end">Generator</th>
+                <th class="text-end">Gen</th>
                 <th class="text-end">Gas</th>
-                <th class="text-end">Commission</th>
+                <th class="text-end">Comm</th>
                 <th class="text-end">Other</th>
                 <th class="text-end">Total</th>
             </thead>
@@ -111,3 +120,4 @@
    </div>
     
 </div>
+
