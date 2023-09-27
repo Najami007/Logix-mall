@@ -115,9 +115,11 @@ export class BillReportMnthPartyWiseComponent implements OnInit {
             this.CommissionTotal += Response[i].commissionCharges;
             this.otherTotal += Response[i].otherServiceCharges;
             this.chargesTotal += Response[i].charges;
-            this.app.stopLoaderDark();
-  
+ 
           }
+
+          
+          this.app.stopLoaderDark();
   
   
         },
