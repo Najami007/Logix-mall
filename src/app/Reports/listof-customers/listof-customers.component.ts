@@ -16,6 +16,8 @@ export class ListofCustomersComponent implements OnInit {
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
 
 
   constructor(
@@ -32,6 +34,8 @@ export class ListofCustomersComponent implements OnInit {
     this.global.setHeaderTitle('List of Customers');
     this.logo = this.global.Logo;
     this.logo1 = this.global.Logo1;
+    this.companyName = this.global.CompanyName;
+    this.companyName2 = this.global.CompanyName2;
     this.getParty();
    
   }

@@ -17,6 +17,9 @@ export class BillrptdatewiseComponent implements OnInit{
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
+  
 
   constructor(
     private http:HttpClient,
@@ -34,6 +37,8 @@ export class BillrptdatewiseComponent implements OnInit{
     this.global.setHeaderTitle('Bill Report DateWise');
     this.logo = this.global.Logo;
     this.logo1 = this.global.Logo1;
+    this.companyName = this.global.CompanyName;
+   this.companyName2 = this.global.CompanyName2;
   }
 
 

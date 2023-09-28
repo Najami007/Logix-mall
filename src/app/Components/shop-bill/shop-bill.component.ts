@@ -14,6 +14,8 @@ import { BillDetailsComponent } from './bill-details/bill-details.component';
 
 
 
+
+
 @Component({
   selector: 'app-shop-bill',
   templateUrl: './shop-bill.component.html',
@@ -21,17 +23,42 @@ import { BillDetailsComponent } from './bill-details/bill-details.component';
 })
 export class ShopBillComponent implements OnInit{
 
+    page:number = 1;
+    count: number = 0;
+    tableSize: number = 10;
+    tableSizes : any = [10,25,50,100];
+
+    onTableDataChange(event:any){
+
+      this.page = event;
+      this.getSavedBill();
+    }
+
+    onTableSizeChange(event:any):void{
+      this.tableSize = event.target.value;
+      this.page =1 ;
+      this.getSavedBill();
+    }
+
+
 
   RoleID:any;
 
   MehriaMallLogo :any;
  MehriaTownLogo:any
+ companyName:any;
+ companyName2:any;
+ companyAddress:any;
+ companyPhoneNo:any;
+ 
+ 
+
 
 
   mappedShopData:any
   searchShop:any;
   searchBill:any;
-  SavedBillList:any;
+  SavedBillList:any = [];
   billPrintData:any;
   billData:any = [];
   partyList:any;
@@ -76,6 +103,13 @@ export class ShopBillComponent implements OnInit{
   ngOnInit(): void {
     this.MehriaMallLogo = this.globaldata.Logo;
     this.MehriaTownLogo = this.globaldata.Logo1;
+    this.companyName = this.globaldata.CompanyName;
+    this.companyName2 = this.globaldata.CompanyName2;
+    this.companyAddress = this.globaldata.Address;
+    this.companyPhoneNo = this.globaldata.Phone;
+ 
+
+
     this.globaldata.setHeaderTitle('Shop Billing');
     this.RoleID = this.globaldata.getRoleId();
  this.getMappedData();
@@ -107,19 +141,22 @@ export class ShopBillComponent implements OnInit{
 
   getMappedData(){
     
-    this.app.startLoaderDark();
+    // this.app.startLoaderDark();
+    $('.loaderDark').show();
     this.http.get(environment.mallApiUrl+'GetMappedShop').subscribe(
       {
         next:value=>{
           // console.log(value);
           this.mappedShopData = value;
-          this.app.stopLoaderDark();
+          //this.app.stopLoaderDark();
+          $('.loaderDark').fadeOut(500);
         },
 
       error:error=>{
         console.log(error);
         this.msg.WarnNotify('Error Occured While loading data');
-        this.app.stopLoaderDark();
+        //this.app.stopLoaderDark();
+        $('.loaderDark').fadeOut(500);
       }
       }
     )

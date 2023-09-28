@@ -20,8 +20,22 @@ import * as b64 from 'base64-js/index.js';
 export class GlobalDataModule  {
 
 
-  public Logo = '../assets/Images/MMA-logo.png'
-  public Logo1 = '../assets/Images/MT-logo.png'
+  public Logo = '../assets/Images/MMA-logo.png';
+  public Logo1 = '../assets/Images/MT-logo.png';
+
+
+  public CompanyName = 'MEHRIA MALL & RESIDENCIA';
+  public CompanyName2 =  'Mehria Town Pvt.(Ltd)';
+  public Address = 'Kamra Road Attock';
+  public Phone = '057-2364801-2';
+  public mobileNo = '';
+  public Email = ''
+
+
+
+
+
+
    
    public currentUserSubject:BehaviorSubject<userInterface>;
    public currentUser: Observable<userInterface>;

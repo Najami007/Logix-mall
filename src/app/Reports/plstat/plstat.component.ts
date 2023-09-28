@@ -17,6 +17,8 @@ export class PlstatComponent implements OnInit {
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
 
 
   constructor(private globalData: GlobalDataModule,
@@ -29,6 +31,8 @@ export class PlstatComponent implements OnInit {
     this.globalData.setHeaderTitle('Profit & Loss Statement');
     this.logo = this.globalData.Logo;
     this.logo1 = this.globalData.Logo1;
+    this.companyName = this.globalData.CompanyName;
+    this.companyName2 = this.globalData.CompanyName2;
 
     $('#printDiv').hide();
   }

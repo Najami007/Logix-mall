@@ -28,6 +28,11 @@ export class BudgettingComponent implements OnInit {
 
   logo:any;
   logo1:any;
+  comapnyName:any;
+  companyName2:any;
+  companyAddress:any;
+  companyPhoneNo:any;
+  
   constructor (
     private http:HttpClient,
     private msg:NotificationService,
@@ -38,12 +43,18 @@ export class BudgettingComponent implements OnInit {
 
   }
 
+  
+
   ngOnInit(): void {
     this.globalData.setHeaderTitle('Budgetting');
     this.GetChartOfAccount();
     this.getSaved();
     this.logo = this.globalData.Logo;
     this.logo1 = this.globalData.Logo1;
+    this.comapnyName = this.globalData.CompanyName;
+    this.companyName2 = this.globalData.CompanyName2;
+    this.companyAddress = this.globalData.Address;
+    this.companyPhoneNo = this.globalData.Phone;
   
   }
 

@@ -85,6 +85,7 @@ import { BudgettingComponent } from './Components/budgetting/budgetting.componen
 import { BudgetReportComponent } from './Reports/budget-report/budget-report.component';
 import { DailyTransactionRptComponent } from './Reports/daily-transaction-rpt/daily-transaction-rpt.component';
 import { BillReportMnthPartyWiseComponent } from './Reports/bill-report-mnth-party-wise/bill-report-mnth-party-wise.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -210,6 +211,7 @@ import { BillReportMnthPartyWiseComponent } from './Reports/bill-report-mnth-par
     MatProgressBarModule,
     NgxMatSelectSearchModule,
     MaterialModule,
+    NgxPaginationModule
     
   
 

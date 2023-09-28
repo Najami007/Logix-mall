@@ -23,6 +23,8 @@ constructor(
 
 logo:any;
 logo1:any;
+companyName:any;
+  companyName2:any;
 
 
 
@@ -31,6 +33,8 @@ logo1:any;
     this.global.setHeaderTitle('Transaction Report');
     this.logo = this.global.Logo;
     this.logo1 =  this.global.Logo1;
+    this.companyName = this.global.CompanyName;
+    this.companyName2 = this.global.CompanyName2;
 
   }
 

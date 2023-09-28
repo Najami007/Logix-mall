@@ -15,6 +15,10 @@ export class BillReportMnthPartyWiseComponent implements OnInit {
   
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
+  
+  
 
 
   constructor(
@@ -30,6 +34,9 @@ export class BillReportMnthPartyWiseComponent implements OnInit {
     this.getParty();
     this.logo = this.global.Logo;
     this.logo1 = this.global.Logo1;
+    this.companyName = this.global.CompanyName;
+    this.companyName2 = this.global.CompanyName2;
+  
   }
 
   customerSearch:any

@@ -15,6 +15,8 @@ export class BsstatComponent implements OnInit {
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
 
   constructor(private globalData: GlobalDataModule,
     private http:HttpClient,
@@ -25,6 +27,8 @@ export class BsstatComponent implements OnInit {
   ngOnInit(): void {
     this.logo = this.globalData.Logo;
     this.logo1 = this.globalData.Logo1;
+    this.companyName = this.globalData.CompanyName;
+    this.companyName2 = this.globalData.CompanyName2;
     this.globalData.setHeaderTitle('Balance Sheet');
     $('#printRpt').hide();
     $('#balanceSheet2').hide();

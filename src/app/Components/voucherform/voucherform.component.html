@@ -34,7 +34,7 @@
                     <mat-form-field class="col-lg-6 col-md-6 col-sm-6 col-xs-6" appearance="outline">
                         <mat-label>Select Voucher Date</mat-label>
                         <input readonly="true" matInput   [(ngModel)]="invoiceDate"
-                            [matDatepicker]="picker" [disabled]="VoucherData != ''">
+                            [matDatepicker]="picker" >
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
@@ -193,10 +193,10 @@
                             width="120">
                     </span>
                     <span class="mt-3">
-                        <h3>Mehria Mall & Residencia</h3>
-                            <p class="text-end" style="margin-top: -15;">Mehria Town Pvt.(Ltd)</p>
-                        <p style="margin-top: -20;">Kamra Road Attock</p>
-                        <p style="margin-top: -15;">Phone No: 057-2364801-2</p>
+                        <h3>{{companyName}}</h3>
+                            <p class="text-end" style="margin-top: -15;">{{companyName2}}</p>
+                        <p style="margin-top: -20;">{{companyAddress}}</p>
+                        <p style="margin-top: -15;">Phone No: {{companyPhoneNo}}</p>
                     </span>
                     <span>
                         <img src="{{logo1}}" style="color: black;" alt="" srcset="" height="100"
@@ -279,17 +279,24 @@
 
     <mat-tab label="Saved Record">
 
-        <div class="container text-center p-2">
+        <div class="container-fluid text-center p-2">
 
 
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Search.....</mat-label>
-                <input [(ngModel)]="txtSearch" matInput type="text" >
-                <mat-icon matSuffix class="text-secondary">search</mat-icon>
-            </mat-form-field>
+           
+
+           
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Search.....</mat-label>
+                  <input matInput [(ngModel)]="txtSearch"  type="text"    #input>
+                  <mat-icon matSuffix class="text-secondary">search</mat-icon>
+                  
+                </mat-form-field>
+
+                <mat-progress-bar mode="indeterminate" *ngIf="SavedVoucherData == ''"></mat-progress-bar>
 
 
-
+           
+                
 
             <table class="col-lg-12  table table-hover bg-light">
 
@@ -310,7 +317,7 @@
                 </thead>
                 <tbody>
 
-                    <tr class="cursorPointer" *ngFor="let item of SavedVoucherData |filter:txtSearch   ; index as index">
+                    <tr class="cursorPointer" *ngFor="let item of SavedVoucherData |filter:txtSearch |paginate:{ id:'voucherData', itemsPerPage : tableSize,currentPage : page, totalItems : count, }; index as index">
 
                         <td>{{index+1}}</td>
                         <td> {{item.invoiceNo}}</td>
@@ -328,7 +335,27 @@
                     </tr>
                 </tbody>
 
-            </table>
+            </table> 
+
+            <div class="d-flex">
+                <mat-hint class="me-1 text-secondary">Total Rows : ({{SavedVoucherData.length}})    </mat-hint>
+                <pagination-controls
+                id="voucherData"
+                previousLabel="Prev"
+                nextLabel="Next"
+            
+                
+                (pageChange)="onTableDataChange($event)"
+                
+                ></pagination-controls>
+                
+
+                <mat-hint class=" me-1 text-secondary">Rows Per Page </mat-hint>
+                <select class="text-white" style="width: 50px; height: 25px;background-color: rgb(75, 164, 248);" (change)="onTableSizeChange($event)">
+                    <option *ngFor=" let item of tableSizes">{{item}}</option>
+                </select>
+                
+            </div>
 
         </div>
 
@@ -396,10 +423,10 @@
                             width="120">
                     </span>
                     <span class="mt-3">
-                        <h3>Mehria Mall & Residencia</h3>
-                            <p class="text-end" style="margin-top: -15;">Mehria Town Pvt.(Ltd)</p>
-                        <p style="margin-top: -20;">Kamra Road Attock</p>
-                        <p style="margin-top: -15;">Phone No: 057-2364801-2</p>
+                        <h3>{{companyName}}</h3>
+                            <p class="text-end" style="margin-top: -15;">{{companyName2}}</p>
+                        <p style="margin-top: -20;">{{companyAddress}}</p>
+                        <p style="margin-top: -15;">Phone No: {{companyPhoneNo}}</p>
                     </span>
                     <span>
                         <img src="{{logo1}}" style="color: black;" alt="" srcset="" height="100"

@@ -17,6 +17,8 @@ export class CashbookComponent  implements OnInit{
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
 
   constructor(
     private http:HttpClient,
@@ -30,6 +32,8 @@ export class CashbookComponent  implements OnInit{
     $('.cashSummary').hide();
     this.logo = this.globalData.Logo;
     this.logo1 = this.globalData.Logo1;
+    this.companyName = this.globalData.CompanyName;
+    this.companyName2 = this.globalData.CompanyName2;
     this.globalData.setHeaderTitle('cash Book')
   }
 

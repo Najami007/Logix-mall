@@ -1,4 +1,4 @@
-  import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NotificationService } from 'src/app/Shared/service/notification.service';
 import * as $ from 'jquery';
@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 
 
+
 @Component({
   selector: 'app-voucherform',
   templateUrl: './voucherform.component.html',
@@ -18,6 +19,26 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class VoucherformComponent implements OnInit{
 
+
+
+  page:number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes : any = [10,25,50,100];
+
+  onTableDataChange(event:any){
+
+    this.page = event;
+    this.getSavedVoucher();
+  }
+
+  onTableSizeChange(event:any):void{
+    this.tableSize = event.target.value;
+    this.page =1 ;
+    this.getSavedVoucher();
+  }
+
+ 
 
   RoleID:any;
 
@@ -30,6 +51,10 @@ export class VoucherformComponent implements OnInit{
   ngOnInit(): void {
     this.logo = this.globalData.Logo;
     this.logo1 = this.globalData.Logo1;
+    this.companyName = this.globalData.CompanyName;
+    this.companyName2 = this.globalData.CompanyName2;
+    this.companyAddress = this.globalData.Address;
+    this.companyPhoneNo = this.globalData.Phone;
     this.globalData.setHeaderTitle('Voucher');
    this.RoleID = this.globalData.getRoleId();
     
@@ -53,6 +78,12 @@ export class VoucherformComponent implements OnInit{
 
   logo:any;
   logo1:any;
+  companyName:any;
+  companyName2:any;
+  companyAddress:any;
+  companyPhoneNo:any;
+  
+ 
 
   /////////////////declared Variables//////////////////////
   cash = 'Cash';
@@ -189,6 +220,7 @@ export class VoucherformComponent implements OnInit{
       (Response:any)=>{
         
         this.SavedVoucherData = Response;
+        
        
       },
       (error:any)=>{
