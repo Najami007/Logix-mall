@@ -23,8 +23,8 @@ export class VoucherformComponent implements OnInit{
 
   page:number = 1;
   count: number = 0;
-  tableSize: number = 10;
-  tableSizes : any = [10,25,50,100];
+  tableSize: number = 0;
+  tableSizes : any = [];
 
   onTableDataChange(event:any){
 
@@ -55,6 +55,9 @@ export class VoucherformComponent implements OnInit{
     this.companyName2 = this.globalData.CompanyName2;
     this.companyAddress = this.globalData.Address;
     this.companyPhoneNo = this.globalData.Phone;
+
+    this.tableSize = this.globalData.paginationDefaultTalbeSize;
+    this.tableSizes = this.globalData.paginationTableSizes;
     this.globalData.setHeaderTitle('Voucher');
    this.RoleID = this.globalData.getRoleId();
     

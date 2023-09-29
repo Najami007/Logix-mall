@@ -25,8 +25,8 @@ export class ShopBillComponent implements OnInit{
 
     page:number = 1;
     count: number = 0;
-    tableSize: number = 10;
-    tableSizes : any = [10,25,50,100];
+    tableSize: number = 0;
+    tableSizes : any = [];
 
     onTableDataChange(event:any){
 
@@ -101,20 +101,19 @@ export class ShopBillComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
+    this.globaldata.setHeaderTitle('Shop Billing');
+    this.RoleID = this.globaldata.getRoleId();
+    this.getMappedData();
+    this.getSavedBill();
+    this.getParty();
     this.MehriaMallLogo = this.globaldata.Logo;
     this.MehriaTownLogo = this.globaldata.Logo1;
     this.companyName = this.globaldata.CompanyName;
     this.companyName2 = this.globaldata.CompanyName2;
     this.companyAddress = this.globaldata.Address;
     this.companyPhoneNo = this.globaldata.Phone;
- 
-
-
-    this.globaldata.setHeaderTitle('Shop Billing');
-    this.RoleID = this.globaldata.getRoleId();
- this.getMappedData();
- this.getSavedBill();
- this.getParty();
+    this.tableSize = this.globaldata.paginationDefaultTalbeSize;
+    this.tableSizes = this.globaldata.paginationTableSizes;
   }
 
 
