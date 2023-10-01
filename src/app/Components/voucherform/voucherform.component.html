@@ -292,7 +292,7 @@
                   
                 </mat-form-field>
 
-                <mat-progress-bar mode="indeterminate" *ngIf="SavedVoucherData == ''"></mat-progress-bar>
+                <mat-progress-bar mode="indeterminate" *ngIf="loadingBar == 'start'"></mat-progress-bar>
 
 
            
@@ -351,8 +351,8 @@
                 
 
                 <mat-hint class=" me-1 text-secondary">Rows Per Page </mat-hint>
-                <select class="text-white" style="width: 50px; height: 25px;background-color: rgb(75, 164, 248);" (change)="onTableSizeChange($event)">
-                    <option *ngFor=" let item of tableSizes">{{item}}</option>
+                <select class="text-white"  style="width: 50px; height: 25px;background-color: rgb(75, 164, 248);" (change)="onTableSizeChange($event)">
+                    <option *ngFor=" let item of tableSizes" [selected]="tableSize == item">{{item}}</option>
                 </select>
                 
             </div>

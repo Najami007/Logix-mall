@@ -23,6 +23,8 @@ import { BillDetailsComponent } from './bill-details/bill-details.component';
 })
 export class ShopBillComponent implements OnInit{
 
+  loadingBar = 'start';
+
     page:number = 1;
     count: number = 0;
     tableSize: number = 0;
@@ -173,6 +175,8 @@ export class ShopBillComponent implements OnInit{
         next:value=>{
           // console.log(value);
           this.SavedBillList = value;
+
+          this.loadingBar = 'stop';
        
         },
         error:error=>{

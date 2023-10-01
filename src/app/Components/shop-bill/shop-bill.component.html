@@ -341,7 +341,7 @@
                 <button  class="btn btn-primary me-2 col-lg-2" data-bs-toggle="modal" data-bs-target="#exampleModal" style="height: 55px;">Get By Customer</button>
             </div>
 
-            <mat-progress-bar mode="query" *ngIf="SavedBillList == ''"></mat-progress-bar>
+            <mat-progress-bar mode="query" *ngIf="loadingBar == 'start'"></mat-progress-bar>
 
             <table class="table mt-1">
                 
@@ -397,7 +397,7 @@
 
                 <mat-hint class=" me-1 text-secondary">Rows Per Page </mat-hint>
                 <select class="text-white" style="width: 50px; height: 25px;background-color: rgb(75, 164, 248);" (change)="onTableSizeChange($event)">
-                    <option *ngFor=" let item of tableSizes">{{item}}</option>
+                    <option *ngFor=" let item of tableSizes"  [selected]="tableSize == item">{{item}}</option>
                 </select>
                 
             </div>

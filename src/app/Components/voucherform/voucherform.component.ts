@@ -19,6 +19,7 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class VoucherformComponent implements OnInit{
 
+  loadingBar = 'start';
 
 
   page:number = 1;
@@ -109,7 +110,7 @@ export class VoucherformComponent implements OnInit{
   debittotal :number = 0;
   creditTotal :number = 0;
   COA: any = [];
-  narration='-';
+  narration='';
 
  //////////////// print Variables/////////////////////
 
@@ -223,6 +224,7 @@ export class VoucherformComponent implements OnInit{
       (Response:any)=>{
         
         this.SavedVoucherData = Response;
+        this.loadingBar = 'stop';
         
        
       },
@@ -294,7 +296,9 @@ export class VoucherformComponent implements OnInit{
     else{
 
       
-   
+      if(this.narration == '' || this.narration == undefined){
+        this.narration = '-';
+      }
 
       this.app.startLoaderDark();  ///////////// will start the loader
       this.http.post(environment.mallApiUrl+'InsertVoucher',{
@@ -514,7 +518,7 @@ export class VoucherformComponent implements OnInit{
     this.VoucherData = [];
     this.debittotal = 0;
     this.creditTotal = 0;
-    this.narration = '-';
+    this.narration = '';
   }
 
 }
