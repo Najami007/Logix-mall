@@ -10,6 +10,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import * as $ from 'jquery';
 import * as b64 from 'base64-js/index.js';
+import { AppComponent } from 'src/app/app.component';
 
 @NgModule({
   declarations: [],
@@ -49,7 +50,8 @@ export class GlobalDataModule  {
   constructor(
     private http:HttpClient,
     private rout : Router,
-    private msg : NotificationService
+    private msg : NotificationService,
+    
     ){
       
       
@@ -119,13 +121,17 @@ export class GlobalDataModule  {
 
 
   login(Email:String,password:string){
+    $('.loaderDark').show();
 
     this.http.post(environment.mallApiUrl+'_userLogin',{
       LoginName: Email,
       Password: password,
     }).subscribe({
       next:(value:any)=>{
-        
+
+        var userID = value._culId;
+        localStorage.setItem('curVal',JSON.stringify({value}));
+       
         
        
        if(value.msg == 'Logged in Successfully' ){
@@ -141,8 +147,15 @@ export class GlobalDataModule  {
           timerProgressBar:true,
 
         }).then((value)=>{
+
+          this.http.get(environment.mallApiUrl+'getusermenu?userid='+atob(atob(userID))).subscribe(
+            (Response:any)=>{
+              this.rout.navigate(["main/"+Response[0].pageLink]);             
+              $('.loaderDark').fadeOut(500);
+            }
+          )
    
-          this.rout.navigate(["main"]);
+          // this.rout.navigate(["main"]);
         })
         
         
@@ -152,10 +165,10 @@ export class GlobalDataModule  {
         
 
         // localStorage.setItem('_usercur',JSON.stringify(this.curUserValue));
-        localStorage.setItem('curVal',JSON.stringify({value}));
+       
        }else{
         this.msg.WarnNotify('Error Occurred While Login Process');
-        console.log(value.msg);
+        $('.loaderDark').fadeOut(500);
        }
       },
       error:error=>{
@@ -175,6 +188,8 @@ export class GlobalDataModule  {
 
 
 logout(){
+
+  $('.loaderDark').show();
     this.http.post(environment.mallApiUrl+'_userLogout',{
       UserID: this.getUserID(),
     }).subscribe(
@@ -185,13 +200,16 @@ logout(){
           
           localStorage.removeItem('curVal');
            this.rout.navigate(['login']);
+           $('.loaderDark').fadeOut(500);
         }else{
           this.msg.WarnNotify(Response.msg);
+          $('.loaderDark').fadeOut(500);
         }
        
       },
       (Error)=>{
         this.msg.WarnNotify('Error Occured Check Connection!');
+        $('.loaderDark').fadeOut(500);
       }
     )
     
@@ -264,6 +282,62 @@ logout(){
       frame1.remove();
     }, 500);
   }
+
+
+   //////////////////////////////////////////////////////////////////////
+
+
+   printLandscape(printSection: string) {
+    var contents = $(printSection).html();
+
+    var frame1:any = $('<iframe />');
+    frame1[0].name = 'frame1';
+    frame1.css({ position: 'absolute', top: '-1000000px' });
+    $('body').append(frame1);
+    var frameDoc = frame1[0].contentWindow
+      ? frame1[0].contentWindow
+      : frame1[0].contentDocument.document
+      ? frame1[0].contentDocument.document
+      : frame1[0].contentDocument;
+    frameDoc.document.open();
+
+    //Create a new HTML document.
+    // frameDoc.document.write(
+    //   "<html><head><title>DIV Contents</title>" +
+    //     "<style>" +
+    //     printCss +
+    //     "</style>"
+    // );
+
+    //Append the external CSS file. <link rel="stylesheet" href="../../../styles.scss" /> <link rel="stylesheet" href="../../../../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    frameDoc.document.write(
+      '<style type="text/css" media="print">@page { size: portrait; }</style>'
+    );
+    frameDoc.document.write(
+      
+      '<link rel="stylesheet" href="../../assets/style/ownStyle.css" type="text/css" media="print"/>'
+      +'<link rel="stylesheet" href="../../assets/style/bootstrap.min.css" type="text/css" media="print"/>'
+      +'<style type="text/css" media="print">@page { size: landscape; }</style>'
+      // '<link rel="stylesheet" href="../../assets/style/bootstrap.min.css.map" type="text/css" />'+
+     
+      // '<link rel="stylesheet" href="../css/bootstrap.css" type="text/css"  media="print"/>'
+    );
+    frameDoc.document.write('</head><body>');
+
+    //Append the DIV contents.
+    frameDoc.document.write(contents);
+    frameDoc.document.write('</body></html>');
+
+    frameDoc.document.close();
+
+    setTimeout(function () {
+      window.frames[0].focus();
+      window.frames[0].print();
+
+      frame1.remove();
+    }, 500);
+  }
+
 
 
 

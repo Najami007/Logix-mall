@@ -86,6 +86,8 @@ import { BudgetReportComponent } from './Reports/budget-report/budget-report.com
 import { DailyTransactionRptComponent } from './Reports/daily-transaction-rpt/daily-transaction-rpt.component';
 import { BillReportMnthPartyWiseComponent } from './Reports/bill-report-mnth-party-wise/bill-report-mnth-party-wise.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { AuthGuard } from './auth.guard';
+import { NotificationService } from './Shared/service/notification.service';
 
 
 
@@ -216,7 +218,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
   
 
   ],
-  providers: [{ provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }],
+  providers: [{ provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] },AuthGuard,NotificationService,GlobalDataModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
